@@ -1,2 +1,2 @@
-# funckier-java
+# Funckier
 Awesome functional interfaces for Java.
