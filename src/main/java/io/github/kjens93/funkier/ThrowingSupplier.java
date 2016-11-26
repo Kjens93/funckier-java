@@ -5,5 +5,5 @@ package io.github.kjens93.funkier;
  */
 @FunctionalInterface
 public interface ThrowingSupplier<T> {
-    T get() throws Throwable;
+    T get() throws Exception;
 }
