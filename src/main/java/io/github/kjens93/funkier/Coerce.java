@@ -19,7 +19,7 @@ public interface Coerce {
         }
         try {
             return supplier.get();
-        } catch (Throwable t) {
+        } catch (Exception t) {
             try {
                 throw constructor.newInstance(t);
             }
