@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public interface Coerce {
 
-    static <T, V extends Throwable> T coerce(ThrowingSupplier<T, ?> supplier, Class<V> clazz) throws V, IllegalArgumentException {
+    static <T, V extends Throwable> T coerce(ThrowingSupplier<T> supplier, Class<V> clazz) throws V, IllegalArgumentException {
         Constructor<V> constructor;
         try {
             constructor = clazz.getConstructor(Throwable.class);
@@ -31,18 +31,18 @@ public interface Coerce {
         }
     }
 
-    static <T> T coerce(ThrowingSupplier<T, ?> supplier) throws RuntimeException {
+    static <T> T coerce(ThrowingSupplier<T> supplier) throws RuntimeException {
         return coerce(supplier, RuntimeException.class);
     }
 
-    static <V extends Throwable> void coerce(ThrowingRunnable<?> runnable, Class<V> clazz) throws V, IllegalArgumentException {
+    static <V extends Throwable> void coerce(ThrowingRunnable runnable, Class<V> clazz) throws V, IllegalArgumentException {
         coerce(() -> {
             runnable.run();
             return true;
         }, clazz);
     }
 
-    static void coerce(ThrowingRunnable<?> callable) throws RuntimeException {
+    static void coerce(ThrowingRunnable callable) throws RuntimeException {
         coerce(callable, RuntimeException.class);
     }
 
