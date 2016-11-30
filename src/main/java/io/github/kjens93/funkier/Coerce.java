@@ -6,8 +6,10 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by kjensen on 11/25/16.
  */
+@Deprecated
 public interface Coerce {
 
+    @Deprecated
     static <T, V extends Throwable> T coerce(ThrowingSupplier<T> supplier, Class<V> clazz) throws V, IllegalArgumentException {
         Constructor<V> constructor;
         try {
@@ -31,10 +33,12 @@ public interface Coerce {
         }
     }
 
+    @Deprecated
     static <T> T coerce(ThrowingSupplier<T> supplier) throws RuntimeException {
         return coerce(supplier, RuntimeException.class);
     }
 
+    @Deprecated
     static <V extends Throwable> void coerce(ThrowingRunnable runnable, Class<V> clazz) throws V, IllegalArgumentException {
         coerce(() -> {
             runnable.run();
@@ -42,6 +46,7 @@ public interface Coerce {
         }, clazz);
     }
 
+    @Deprecated
     static void coerce(ThrowingRunnable callable) throws RuntimeException {
         coerce(callable, RuntimeException.class);
     }
